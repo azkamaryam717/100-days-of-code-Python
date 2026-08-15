@@ -6,19 +6,19 @@ print("Hello World")
 input("Enter your name: ")
 
 # 3. type()
-# int
+# int()
 a = 3
 print(type(a))
 
-# float
+# float()
 a = 3.5
 print(type(a))
 
-# bool
+# bool()
 a = True
 print(type(a))
 
-# str
+# str()
 a = "Hello World"
 print(type(a))
 
@@ -51,30 +51,30 @@ print(b)
 print(round(b))
 print(round(b, 3))
 
-# 9. divmod
+# 9. divmod()
 print(divmod(7, 2))
 
-# 10. bin/oct/hex
+# 10. bin()/oct()/hex()
 print(bin(4))
 print(oct(4))
 print(hex(4))
 
-# 11. id
+# 11. id()
 a = 5
 print(id(a))
 
-# 12. ord
+# 12. ord()
 print(ord("A"))
 print(ord("a"))
 
-# 13. len
+# 13. len()
 print(len("Lahore"))
 print(len([1, 2, 3]))
 
-# 14. sum
+# 14. sum()
 print(sum([1, 2, 3, 4, 5]))
 print(sum({1, 2, 3, 4, 5}))
 
-# 15. help
+# 15. help()
 help("print")
 help("sum")
