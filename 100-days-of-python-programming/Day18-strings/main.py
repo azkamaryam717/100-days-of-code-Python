@@ -59,8 +59,8 @@ del name
 #print(name) # NameError
 
 a = "Hello World"
-# del a[0] (TypeError because deletion changes string structure but string are immutable)
-# del a[:3:2] (TypeError)
+# del a[0]  # TypeError because strings are immutable
+# del a[:3:2]  # TypeError because strings are immutable
 
 # 6. Operations on Strings
 # 1. Arithmetic Operations
@@ -204,3 +204,77 @@ print(name.replace("Hi", "Hello"))
 name = "                  Azka     "
 print("Hi" + name)
 print("Hi" + name.strip())
+
+# Example Programs
+# 1. Length of String without len()
+s = input("Enter the String: ")
+counter = 0
+for i in s:
+    counter += 1
+print("Length of string is: ", counter)
+
+# 2. Extract username from email
+# Eg: azka123@gmail.com ---> azka123
+s = input("Enter the email: ")
+position = s.index("@")
+print(s[0:position])
+
+# 3. Count character frequency in a string
+s = input("Enter the string: ")
+term = input("What character would like to search for:  ")
+counter = 0
+for i in s:
+    if i == term:
+        counter += 1
+print("Frequency of ",term," is",counter)
+
+# 4. Remove Character from String
+s = input("Enter the string: ")
+term = input("What would like to remove:  ")
+result = ""
+for i in s:
+    if i != term:
+        result += i
+print(result)
+
+# 5. Check if a string is a palindrome
+s = input('enter the string: ')
+flag = True
+for i in range(0, len(s)//2):
+    if s[i] != s[len(s) - i - 1]:
+        flag = False
+        print("Not Palindrome!")
+        break
+if flag:
+    print("Palindrome")
+
+# 6. Split String into Words Without split()
+s = input('enter the string: ')
+L = []
+temp = ""
+for i in s:
+    if i != " ":
+        temp += i
+    else:
+        L.append(temp)
+        temp = ""
+L.append(temp)
+print(L)
+
+# 7. Convert String to Title Case (No title())
+s = input('Enter the string: ')
+L = []
+for i in s.split():
+    L.append(i[0].upper() + i[1:].lower())
+print(L)
+
+
+# 8. Integer to String Conversion
+number = int(input('Enter a positive number: '))
+digits = "0123456789"
+result = ""
+while number != 0:
+    result = digits[number%10] + result
+    number //= 10
+print(result)
+print(type(result))
