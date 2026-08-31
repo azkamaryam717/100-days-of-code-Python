@@ -56,3 +56,23 @@ def flexi(*number): # Flexible inputs ---> tuple
         product *= i
     print(product)
 print(flexi(1, 2, 3, 4, 5))
+
+# *args and **kwargs
+# *args
+# Pass variable non-keyword args to function
+def multiply(*kwargs):
+  product = 1
+  for i in kwargs:
+    product *= i
+  print(kwargs)
+  return product
+print(multiply(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12))
+
+# **kwargs
+# Pass any no. of keyword args (key-value pairs).
+# Acts like a dict.
+def display(**Azka):
+  for (key, value) in Azka.items():
+    print(key, '->', value)
+
+print(display(srilanka='colombo', nepal='kathmandu', pakistan='islamabad'))
