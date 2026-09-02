@@ -91,3 +91,46 @@ def func_c(z):
 print(func_a())
 print(5 + func_b(2))
 print(func_c(func_a))
+
+# Nested Functions
+def f():
+    print("Inside f")
+    def g():
+        print("Inside g")
+    g()
+print(f())
+# Nested Function stays Abstracted/Hidden from main program
+# g() # TypeError
+# def f():
+#     print("Inside f")
+#     def g():
+#         print("Inside g")
+#         f()
+#     g()                    # Infinite Loop ---> Code will Crash ---> Kernel Dead
+# print(f())
+
+# Harder Scope
+def g(x):
+    def h():
+        x = "abc"
+    x += 1
+    print("in g(x): x =", x)
+    h()
+    return x
+x = 3
+z = g(x)
+print(z)
+
+# Complicated Scope
+def g(x):
+    def h(x):
+        x += 1
+        print("in h(x): x =", x)
+    x += 1
+    print("in g(x): x =", x)
+    h(x)
+    return x
+x = 3
+z = g(x)
+print("in main proram scope: x =", x)
+print("in main program scope: z =", z)
