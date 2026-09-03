@@ -99,6 +99,7 @@ def f():
         print("Inside g")
     g()
 print(f())
+
 # Nested Function stays Abstracted/Hidden from main program
 # g() # TypeError
 # def f():
