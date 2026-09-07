@@ -1,6 +1,8 @@
 def is_even(number):
     if type(number) == int:
         if number % 2 == 0:
-            print("Even")
+            return "Even"
         else:
-            print("Odd")
+            return "Odd"
+    else:
+        return "Not allowed"

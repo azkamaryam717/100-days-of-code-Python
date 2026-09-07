@@ -21,6 +21,15 @@ print(type.__doc__)
 
 # Functions: 2 Perspectives
 # Creator's perspective and user perspective
+import func_demo
+
+even_or_odd = func_demo.is_even(34)
+print(even_or_odd)
+# func_demo.is_even("Hello") # TypeError as function doesnot accept strings
+
+import func_demo2 as fd
+even_or_odd = fd.is_even("Hello")
+print(even_or_odd)
 
 # Parameters vs Arguments
 def power(a, b):
