@@ -19,6 +19,9 @@ print(is_even.__doc__)
 print(print.__doc__)
 print(type.__doc__)
 
+# Functions: 2 Perspectives
+# Creator's perspective and user perspective
+
 # Parameters vs Arguments
 def power(a, b):
     return a**b
