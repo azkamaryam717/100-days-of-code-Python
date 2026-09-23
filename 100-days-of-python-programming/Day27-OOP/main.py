@@ -158,3 +158,49 @@ print(id(sbi))
 # They don't share __balance.
 
 # But: __counter is a class variable, so it is shared by the class.
+
+# ---EXAMPLE---
+# Creating Custom Data Type (Fraction) & Corresponding Methods to Add, Sub, Mul and Divide Fractions
+
+class Fraction:
+    def __init__(self):
+        self.num = n
+        self.den = d
+
+    def __str__(self):
+        return "{}/{}".format(self.num, self.den) 
+
+    def __add__(self, other):
+        temp_num = self.num * other.den + other.num + self.den
+        temp_den = self.den * other.num
+        return "{}/{}".format(temp_num, temp_den)
+
+    def __sub__(self, other):
+            temp_num = self.num * other.den - other.num + self.den
+            temp_den = self.den * other.num
+            return "{}/{}".format(temp_num, temp_den)
+
+    def __mul__(self, other):
+        temp_num = self.num * other.num
+        temp_den = self.den * other.den
+        return "{}/{}".format(temp_num, temp_den)
+    
+    def __truediv__(self, other):
+        temp_num = self.num * other.den
+        temp_den = self.den * other.num
+        return "{}/{}".format(temp_num, temp_den)
+
+x = Fraction(4, 5)
+print(x)
+print(type(x))
+
+y = Fraction(5, 6)
+print(y)
+print(type(y))
+
+L = [1, 2, 3, 4, x]
+print(L)
+print(x + y)
+print(x - y)
+print(x * y)
+print(x / y)
