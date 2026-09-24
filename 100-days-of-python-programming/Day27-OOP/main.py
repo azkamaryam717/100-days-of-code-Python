@@ -163,7 +163,7 @@ print(id(sbi))
 # Creating Custom Data Type (Fraction) & Corresponding Methods to Add, Sub, Mul and Divide Fractions
 
 class Fraction:
-    def __init__(self):
+    def __init__(self, n, d):
         self.num = n
         self.den = d
 
@@ -204,3 +204,63 @@ print(x + y)
 print(x - y)
 print(x * y)
 print(x / y)
+
+# Encapsulation
+# Instance Variable (Unique value per object)
+
+sbi = Atm()
+# sbi.__balance
+sbi.deposit()
+
+sbi = Atm()
+
+
+# Pass By Reference
+class Customer:
+    def __init__(self, name):
+        self.name = name
+
+cust = Customer("Azka")
+print(cust.name)
+
+class Customer:
+    def __init__(self, name):
+        self.name = name 
+    def greet(self):
+        print("Hello", self.name)
+
+cust = Customer("Azka")
+cust.greet()
+
+class Customer:
+    def __init__(self, name , gender):
+        self.name = name
+        self.gender = gender
+    def greet(customer):
+        if customer.gender == "Male":
+            print("Hello ", customer.name, " sir")
+        else:
+            print("Hello ", customer.name, " ma'am")
+
+cust = Customer("Azka", "Female")
+cust.greet()
+
+# In Python, everything including all data types(e.g., int, str, list, dict) are object.
+# Custom class instances = objects too.
+
+class Customer:
+    def __init__(self, name, gender):
+        self.name = name
+        self.gender = gender
+
+    def greet(self):
+        if self.gender == "Male":
+            print("Hello ", self.name, "Sir")
+        else:
+            print("Hello ", self.name, "Ma'am")
+        cust2 = Customer("Azka", "Female")
+        return cust2
+
+cust = Customer("Hadia", "Female")
+new_cust = cust.greet()
+print(new_cust.name)
