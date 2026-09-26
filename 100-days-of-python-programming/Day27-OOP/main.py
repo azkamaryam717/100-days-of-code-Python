@@ -62,7 +62,7 @@ class Atm():
             Atm.__counter = new
         else:
             print("Not Allowed")
-
+    # getter and setters are used to access an modify private data members
     def get_pin(self):
         return self.__pin
 
@@ -210,9 +210,36 @@ print(x / y)
 
 sbi = Atm()
 # sbi.__balance
+sbi.__balance = "asdfgh"
 sbi.deposit()
 
-sbi = Atm()
+# Class Data Encapsulation:
+# Python ---> Use `__` prefix (e.g., `self.__pin`, `self.__balance`) for data hiding.
+obj = Atm()
+obj.__balance = "asdfghg"
+obj.deposit()
+obj.check_balance() # no error
+obj._Atm__balance = "wertw"
+# obj.deposit() # code crash
+
+# Python Variable Privacy:
+
+# `__balance` ---> Name-mangled to `_Atm__balance`.
+# _Truly private_ is not a concept in Python.
+# `__balance` is _pseudo-private_, but accessible via `_Atm__balance` if known.
+# getters and setters 
+obj.get_pin()
+obj.set_pin(1234)
+
+# let's set a Rule ---> PIN must be a String
+obj.set_pin(5.6) # Output: Not allowed, because we used a rule for pin in set_pin method(Encapsulation)
+sbi.get_pin()
+
+
+# Reference Varialble
+Atm() # Object created but is unusable because we never stored it in variable
+# whenever creating object, write this code:
+obj = Atm() # obj is reference variable and Atm() is object
 
 
 # Pass By Reference
@@ -264,3 +291,137 @@ class Customer:
 cust = Customer("Hadia", "Female")
 new_cust = cust.greet()
 print(new_cust.name)
+
+class Customer:
+    def __init__(self, name):
+        self.name = name
+    def greet(customer):
+        customer.name = "Azka"
+        print(customer.name)
+
+cust = Customer("Hadia")
+cust.greet()
+
+class Customer:
+    def __init__(self, name):
+        self.name = name
+    def greet(customer):
+        customer.name = "Azka"
+        print(customer.name)
+
+cust = Customer("Hadia")
+cust.greet()
+print(cust.name)
+
+# Object Mutation in Functions:
+# Passing obj to func ---> func modifies obj ---> Original obj reflects changes.
+
+class Customer:
+    def __init__(self, name):
+        self.name = name
+    def greet(customer):
+        print(id(customer))
+        customer.name = "Azka"
+        print(customer.name)
+        print(id(customer))
+
+cust = Customer("Hadia")
+print(id(cust))
+print(cust)
+print(cust.name)
+
+# class objects are mutable like lists, dict, sets.
+def change(L):
+    print(id(L))
+    L.append(5)
+    print(id(L))
+
+L1 = [1, 2, 3, 4]
+print(id(L1))
+print(L1)
+change(L1)
+print(L1)
+
+L1 = [1, 2, 3, 4]
+print(id(L1))
+print(L1)
+change(L1[:]) # Cloning
+print(L1) 
+# Avoid passing original list; inter operations may alter the original list.
+# Use "cloning" to prevent external changes
+
+# Collection of Objects
+class Customer:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+cust1 = Customer("Azka", 20)
+cust2 = Customer("Hadia", 34)
+cust3 = Customer("AbdulAhad", 29)
+
+L = [cust1, cust2, cust3]
+for i in L:
+    print(i) # this will only print object references
+
+# To print actual object data
+for i in L:
+    print(i.name, i.age)
+
+class Customer:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def intro(self):
+        print("I am ",self.name,"and I am ", self.age)
+
+cust1 = Customer("Azka", 20)
+cust2 = Customer("Hadia", 34)
+cust3 = Customer("AbdulAhad", 29)
+
+L = [cust1 , cust2, cust3]
+
+for i in L:
+    i.intro()
+
+# Looping & Objects:
+# Object Collection: Lists, tuples, dicts can store custom class objects
+# Loop + List ---> treat list as object; compatible with looping.
+# Dict/Tuple  ---> compatible with loops, same approach as lists in loops.
+# Sets        ---> immutable data types only; incompatible with mutable objects in loops.
+
+# Static Variables and Methods
+
+# Back to ATM Code Enhancement
+# Like adding unique serial number for each user.
+
+c1 = Atm()
+c2 = Atm()
+c3 = Atm()
+
+c1.sno
+c2.sno
+c3.sno
+# Problem:   `self.sno` resets on each object creation.
+
+# Variable Types
+# 1. Instance Variable: Unique per object (e.g., pin, balance, GPA).
+# 2. Static/Class Variable: Same across objects (e.g., IFSC code, Degree no.)
+
+# Now for this ATM Code we will create a Static Variable
+# Note ---> Static Variable is Defined outside constructor.
+#           Instance Variable is Defined inside constructor.
+
+c1 = Atm()
+c2 = Atm()
+c3 = Atm()
+
+c1.sno
+c2.sno
+c3.sno
+
+c3.__counter # counter value in memory = 4
+c2.__counter
+c1.__counter
+Atm.__counter
