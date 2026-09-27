@@ -425,3 +425,277 @@ c3.__counter # counter value in memory = 4
 c2.__counter
 c1.__counter
 Atm.__counter
+
+# Class Relationship
+# --- 1. Aggregation ---
+
+class Customer:
+    def __init__(self, name, gender, address):
+        self.name = name
+        self.gender = gender
+        self.address = address
+
+class Address:
+    def __init__(self, city, pincode, state):
+        self.city = city
+        self.pincode = pincode
+        self.state = state
+
+add = Address("Lahore", 234512, "Punjab")
+cust = Customer("Azka", "Female", add)
+print(cust.address)
+print(cust.address.city)
+print(cust.address.pincode)
+
+class Customer:
+    def __init__(self, name, gender, address):
+        self.name = name
+        self.gender = gender
+        self.address = address
+
+    def edit_profile(self, new_name, new_city, new_pincode, new_state):
+        self.name = new_name
+        self.address.change_address(new_city, new_pincode, new_state)
+
+class Address:
+    def __init__(self, city, pincode, state):
+        self.city = city
+        self.pincode = pincode
+        self.state = state
+
+    def change_address(self, new_city, new_pincode, new_state):
+        self.city = new_city
+        self.pincode = new_pincode
+        self.state = new_state
+
+add = Address("Lahore", 22334, "Punjab")
+cust = Customer("Azka", "Female", add)
+cust.edit_profile("Maryam", "Karachi", 876556, "Sindh")
+print(cust.address.pincode)
+
+# --- 2. Inheritance ---
+# Code Reusability (Saves Time; Concise, Optimized Code; Effective)
+
+class User:
+    def login(self):
+        print("login")
+
+    def register(self):
+        print("Register")
+
+class Student(User):
+    def enroll(self):
+        print("Enroll")
+
+    def review(self):
+        print("Review")
+
+stu1 = Student()
+stu1.enroll()
+stu1.review()
+stu1.login()
+stu1.register()
+u = User()
+# u.enroll() # AttributeError because reverse is not possible
+
+# Ex 1 - Inheriting Constructer
+class Phone:
+    def __init__(self, price, brand, camera):
+        print("Inside Phone Constructor")
+        self.price = price
+        self.brand = brand
+        self.camera = camera
+
+class SmartPhone(Phone):
+    pass
+
+s = SmartPhone(200000, "Apple", 13)
+print(s.brand)
+
+
+# Ex 2 - Inheiting Private Members
+class Phone:
+    def __init__(self, price, brand, camera):
+        print("Inside Phone Constructor")
+        self.price = price
+        self.__brand = brand
+        self.camera = camera
+    
+class SmartPhone(Phone):
+    pass
+    
+s = SmartPhone(200000, "Apple", 13)
+# print(s.__brand) # AttributeError because hidden parent members are not accessible by chile
+
+# POLYMORPHISM
+# Ex 3 - Polymorphism
+class Phone:
+    def __init__(self, price, brand, camera):
+        print("Inside Phone Constructor")
+        self.__price = price
+        self.brand = brand
+        self.camera = camera
+
+    def buy(self):
+        print("Buying a phone")
+class SmartPhone(Phone):
+    def buy(self):
+        print("Buying a Smartphone")
+    
+s = SmartPhone(200000, "Apple", 13)
+s.buy() # Method Overriding
+
+# Polymorphism
+# Method Overriding
+# Method Overloading:
+# Operator Overloading
+
+# Ex - Class Parent
+class Parent:
+    def __init__(self, num):
+        self.__num = num
+
+    def get_num(self):
+        return self.__num
+
+class Child(Parent):
+    def show(self):
+        print("This is in child class")
+
+son = Child(100)
+print(son.get_num())
+son.show()
+
+# Ex 2
+class Parent:
+    def __init__(self, num):
+        self.__num = num
+
+    def get_num(self):
+        return self.__num
+
+class Child(Parent):
+    def __init__(self, val, num):
+        self.__val = val
+
+    def get_val(self):
+        return self.__val
+    
+son = Child(100, 10)
+# print("Parent: Num:", son.get_num()) # AttributeError 
+print("Child: Val", son.get_val())
+
+# No Child Constructor      ---> Parent Constructor invoked automatically.
+# Child Constructor present ---> Parent Constructor not called.
+# Hence parent num was not assigned any values as the constructoe was never invoked
+
+# Example 3
+class A:
+    def __init__(self):
+        self.var = 100
+
+    def display(self, var):
+        print("Class A: ", self.var)
+
+class B(A):
+    def display2(self, var):
+        p("Class B: ",self.var)
+
+obj = B()
+obj.display(200)
+
+# --- Use of super() Keyword ---
+class Phone:
+    def __init__(self, price, brand, camera):
+        print ("Inside phone constructor")
+        self.__price = price
+        self.brand = brand
+        self.camera = camera
+    def buy(self):
+        print ("Buying a phone")
+
+class SmartPhone(Phone):
+    def buy(self):
+        print ("Buying a smartphone")
+        super().buy() # Call Parent's buy() method
+
+s = SmartPhone(200000, "Apple", 13)
+s.buy()
+
+# Example - Super with Constructor
+class Phone:
+    def __init__(self, price, brand, camera):
+        print ("Inside phone constructor")
+        self.__price = price
+        self.brand = brand
+        self.camera = camera
+    def buy(self):
+        print ("Buying a phone")
+
+class SmartPhone(Phone):
+    def __init__(self, price, brand, camera, os , ram):
+        print("Inside smartphone constructor")
+        super().__init__(price, brand , camera)
+        self.os = os
+        self.ram = ram
+        print("Inside Smartphone constructor")
+    def buy(self):
+        print ("Buying a smartphone")
+        super().buy() # Call Parent's buy() method
+
+s = SmartPhone(200000, "Apple", 13)
+print(s.os)
+print(s.brand)
+
+# Example - super()
+
+class Parent:
+    def __init__(self, num):
+        self.__num = num
+
+    def get_num(self):
+        return self.__num
+
+class Child(Parent):
+    def __init__(self, val, num):
+        super().__init__(num)
+        self.__val = val
+
+    def get_val(self):
+        return self.__val
+    
+son = Child(100, 10) 
+print(son.get_num())
+print(son.get_val())
+
+class Parent:
+    def __init__(self):
+        self.num = 1000
+
+class Child(Parent):
+    def __init__(self):
+        super().__init__()
+        self.var = 2000
+
+    def show(self):
+        print(self.num)
+        print(self.var)
+
+son = Child()
+son.show()
+
+class Parent:
+    def __init__(self):
+        self.__num = 1000
+    def show(self):
+        print("Parent:", self.__num)
+class Child(Parent):
+    def __init__(self):
+        super().__init__()
+        self.__var = 2000
+
+    def show(self):
+        print("Child:", self.var)
+
+son = Child()
+son.show()
