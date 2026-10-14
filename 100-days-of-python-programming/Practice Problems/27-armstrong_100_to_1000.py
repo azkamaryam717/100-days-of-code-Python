@@ -1,6 +1,5 @@
 # Print all the armstrong numbers in the range of 100 to 1000
 # First Method
-# First Method
 
 for i in range(100, 1001):
     temp = i
